@@ -13,8 +13,8 @@ GH_TOKEN = config("GITHUB_TOKEN")
 def parse(args: List[str]) -> Dict[str, Any]:
     options, _ = getopt.getopt(
         args,
-        "o:r:s:e",
-        ["owner=", "repositories=", "start=", "end"]
+        "ho:r:s:e",
+        ["help", "owner=", "repositories=", "start=", "end"]
     )
     args = dict()
     for o, v in options:
