@@ -51,13 +51,14 @@ def get_releases(args: Dict[str, Any]):
             published_at = datetime.datetime.strptime(release.published_at, "%Y-%m-%dT%H:%M:%SZ")
             if args["end"] > published_at > args["start"]:
                 release_notes[repo].append(release.body)
-    with open("RELEASE-NOTES.md", "w") as f:
+    with open("RELEASE-NOTES.md", "r+") as f:
         for repo in release_notes.keys():
             f.write(f"# {repo}\n\n")
             for release in release_notes[repo]:
                 f.write(f"{release}\n\n")
-
-    with open("RELEASE-NOTES.md", "r") as f:
+            f.flush()
+            # "reset" fd to the beginning of the file
+            f.seek(0)
         data = f.read()
     start = args['start'].strftime('%Y-%m-%d')
     end = args['end'].strftime('%Y-%m-%d')
