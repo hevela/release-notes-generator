@@ -1,4 +1,5 @@
 # Release Notes Generator
+This scripts fetches the release notes in a given range of time for a list of repositories. Creates a provate gist and uploads it to the user profile
 
 ## Installation
 To install, run
